@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">NeRecipe</string>
+    <string name="button_add_description">buttonAdd</string>
+    <string name="icon_background_description">icon_background</string>
+    <string name="text_background">Add a recipe to your favorites</string>
+    <string name="text_hint">textHint</string>
+    <string name="button_clear_filter">ClearFilter</string>
+    <string name="title_hint">title_hint</string>
+    <string name="author_name_hint">author_name_hint</string>
+    <string name="text_recipe_hint">text_recipe_hint</string>
+    <string name="european_type">European kitchen</string>
+    <string name="asian_type">Asian kitchen</string>
+    <string name="panasian_type">Panasian kitchen</string>
+    <string name="eastern_type">Eastern kitchen</string>
+    <string name="american_type">American kitchen</string>
+    <string name="russian_type">Russian kitchen</string>
+    <string name="mediterranean_type">Mediterranean kitchen</string>
+    <string name="button_save_description">buttonSave_description</string>
+    <string name="button_apply_text">button_apply_text</string>
+    <string name="menu_options_description">menu_options_description</string>
+    <string name="button_favorite_description">button_favorite_description</string>
+    <string name="category_recipe_hint">category_recipe_hint</string>
+    <string name="icon_descr">Icon</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="favorites">Favorites</string>
+    <string name="all_recipes">AllRecipes</string>
+    <string name="remove">Remove</string>
+    <string name="edit">Edit</string>
+    <string name="all_filled">All fields must be filled in</string>
+    <string name="disable">You cannot disable all filters</string>
+</resources>
