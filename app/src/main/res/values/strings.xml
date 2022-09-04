@@ -28,5 +28,4 @@
     <string name="remove">Remove</string>
     <string name="edit">Edit</string>
     <string name="all_filled">All fields must be filled in</string>
-    <string name="disable">You cannot disable all filters</string>
 </resources>

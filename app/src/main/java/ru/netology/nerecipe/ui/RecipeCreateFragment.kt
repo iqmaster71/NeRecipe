@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import ru.netology.nerecipe.adapter.showCategories
 import ru.netology.nerecipe.databinding.FragmentFilterBinding
 import ru.netology.nerecipe.dto.Category
 import ru.netology.nerecipe.viewModel.RecipeViewModel
@@ -23,13 +22,59 @@ class RecipeCreateFragment : Fragment() {
     ) = FragmentFilterBinding.inflate(layoutInflater, container, false).also { binding ->
 
         with(binding) {
-            checkBoxEuropean.text = checkBoxEuropean.context.showCategories(Category.European)
-            checkBoxAsian.text = checkBoxAsian.context.showCategories(Category.Asian)
-            checkBoxPanasian.text = checkBoxPanasian.context.showCategories(Category.PanAsian)
-            checkBoxEastern.text = checkBoxEastern.context.showCategories(Category.Eastern)
-            checkBoxAmerican.text = checkBoxAmerican.context.showCategories(Category.American)
-            checkBoxRussian.text = checkBoxRussian.context.showCategories(Category.Russian)
-            checkBoxMediterranean.text = checkBoxMediterranean.context.showCategories(Category.Mediterranean)
+            checkBoxEuropean.isChecked = recipeCreateViewModel.getStateSwitch(Category.European)
+            checkBoxAsian.isChecked = recipeCreateViewModel.getStateSwitch(Category.Asian)
+            checkBoxPanasian.isChecked = recipeCreateViewModel.getStateSwitch(Category.PanAsian)
+            checkBoxEastern.isChecked = recipeCreateViewModel.getStateSwitch(Category.Eastern)
+            checkBoxAmerican.isChecked = recipeCreateViewModel.getStateSwitch(Category.American)
+            checkBoxRussian.isChecked = recipeCreateViewModel.getStateSwitch(Category.Russian)
+            checkBoxMediterranean.isChecked = recipeCreateViewModel.getStateSwitch(Category.Mediterranean)
+
+            with(binding) {
+
+                checkBoxEuropean.setOnClickListener {
+                    recipeCreateViewModel.saveStateSwitch(
+                        Category.European,
+                        checkBoxEuropean.isChecked
+                    )
+                }
+                checkBoxAsian.setOnClickListener {
+                    recipeCreateViewModel.saveStateSwitch(
+                        Category.Asian,
+                        checkBoxAsian.isChecked
+                    )
+                }
+                checkBoxPanasian.setOnClickListener {
+                    recipeCreateViewModel.saveStateSwitch(
+                        Category.PanAsian,
+                        checkBoxPanasian.isChecked
+                    )
+                }
+                checkBoxEastern.setOnClickListener {
+                    recipeCreateViewModel.saveStateSwitch(
+                        Category.Eastern,
+                        checkBoxEastern.isChecked
+                    )
+                }
+                checkBoxAmerican.setOnClickListener {
+                    recipeCreateViewModel.saveStateSwitch(
+                        Category.American,
+                        checkBoxAmerican.isChecked
+                    )
+                }
+                checkBoxRussian.setOnClickListener {
+                    recipeCreateViewModel.saveStateSwitch(
+                        Category.Russian,
+                        checkBoxRussian.isChecked
+                    )
+                }
+                checkBoxMediterranean.setOnClickListener {
+                    recipeCreateViewModel.saveStateSwitch(
+                        Category.Mediterranean,
+                        checkBoxMediterranean.isChecked
+                    )
+                }
+            }
 
             binding.buttonSave.setOnClickListener {
                 onButtonSaveClicked(binding)
@@ -92,7 +137,7 @@ class RecipeCreateFragment : Fragment() {
         }
 
         if (checkedCount == nothingIsChecked) {
-            Toast.makeText(activity, "@string/disable", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "You cannot disable all filters", Toast.LENGTH_LONG).show()
         } else {
             recipeCreateViewModel.showRecipesByCategories(categoryList)
             val resultBundle = Bundle(1)

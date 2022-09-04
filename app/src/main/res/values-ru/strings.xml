@@ -28,5 +28,4 @@
     <string name="remove">Удалить</string>
     <string name="edit">Редактировать</string>
     <string name="all_filled">Все поля должны быть заполнены</string>
-    <string name="disable">Вы не можете отключить все фильтры</string>
 </resources>

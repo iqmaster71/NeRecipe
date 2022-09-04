@@ -10,6 +10,8 @@ import ru.netology.nerecipe.data.RoomRecipeRepositoryImpl
 import ru.netology.nerecipe.db.AppDb
 import ru.netology.nerecipe.dto.Category
 import ru.netology.nerecipe.dto.Recipe
+import ru.netology.nerecipe.settings.SettingsRepository
+import ru.netology.nerecipe.settings.SharedPrefsSettingsRepository
 import ru.netology.nerecipe.util.SingleLiveEvent
 
 class RecipeViewModel(
@@ -30,8 +32,10 @@ class RecipeViewModel(
 
     val separateRecipeViewEvent = SingleLiveEvent<Long>()
     val navigateToRecipeContentScreenEvent = SingleLiveEvent<Recipe?>()
-    val currentRecipe = MutableLiveData<Recipe?>(null)
-    var favoriteFilter: MutableLiveData<Boolean> = MutableLiveData()
+    private val currentRecipe = MutableLiveData<Recipe?>(null)
+    private var favoriteFilter: MutableLiveData<Boolean> = MutableLiveData()
+    private val repositorySettings: SettingsRepository = SharedPrefsSettingsRepository(application)
+    private val categoryList = arrayListOf<Category>()
 
     init {
         favoriteFilter.value = false
@@ -65,6 +69,70 @@ class RecipeViewModel(
     }
 
     fun searchRecipeByName(recipeName: String) = repository.search(recipeName)
+
+    override fun saveStateSwitch(key: Category, b: Boolean) {
+        setupCategories(key, b)
+        repositorySettings.saveStateSwitch(key, b)
+    }
+
+    override fun getStateSwitch(key: Category): Boolean {
+        val b = repositorySettings.getStateSwitch(key)
+        setupCategories(key, b)
+        return b
+    }
+
+    private fun setupCategories(key: Category, b: Boolean) {
+        if (key == Category.European) {
+            if (b) {
+                categoryList.add(Category.European)
+            } else {
+                categoryList.remove(Category.European)
+            }
+        }
+        if (key == Category.Asian) {
+            if (b) {
+                categoryList.add(Category.Asian)
+            } else {
+                categoryList.remove(Category.Asian)
+            }
+        }
+        if (key == Category.PanAsian) {
+            if (b) {
+                categoryList.add(Category.PanAsian)
+            } else {
+                categoryList.remove(Category.PanAsian)
+            }
+        }
+        if (key == Category.Eastern) {
+            if (b) {
+                categoryList.add(Category.Eastern)
+            } else {
+                categoryList.remove(Category.Eastern)
+            }
+        }
+        if (key == Category.American) {
+            if (b) {
+                categoryList.add(Category.American)
+            } else {
+                categoryList.remove(Category.American)
+            }
+        }
+        if (key == Category.Russian) {
+            if (b) {
+                categoryList.add(Category.Russian)
+            } else {
+                categoryList.remove(Category.Russian)
+            }
+        }
+        if (key == Category.Mediterranean) {
+            if (b) {
+                categoryList.add(Category.Mediterranean)
+            } else {
+                categoryList.remove(Category.Mediterranean)
+            }
+        }
+        repository.setFilter(categoryList)
+    }
 
     override fun onRemoveClicked(recipe: Recipe) = repository.delete(recipe.id)
 

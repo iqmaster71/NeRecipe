@@ -13,6 +13,7 @@ interface RecipeRepository {
     fun search(recipeName: String)
     fun getCategory(category: Category)
     fun update()
+    fun setFilter(categories: ArrayList<Category>)
 
     companion object {
         const val NEW_ID = 0L
